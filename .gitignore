@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+artifacts/
+*.local.json
+*.local.txt
+*.jsonl
