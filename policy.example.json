@@ -1,0 +1,18 @@
+{
+  "origins": [
+    "https://example.com"
+  ],
+  "authorization_ref": "REPLACE-WITH-SIGNED-ENGAGEMENT-ID",
+  "expires_at": "2000-01-01T00:00:00+00:00",
+  "automation_allowed": false,
+  "excluded_paths": [
+    "/logout",
+    "/account/delete"
+  ],
+  "max_requests": 40,
+  "max_seconds": 180,
+  "interval_seconds": 1.0,
+  "timeout_seconds": 8,
+  "max_body_bytes": 262144,
+  "max_assets": 6
+}

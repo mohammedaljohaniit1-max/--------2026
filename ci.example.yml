@@ -1,0 +1,20 @@
+name: Local regression tests
+on:
+  push:
+    branches: [main, genspark_ai_developer]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Verify local-only test suite
+        run: bash verify.sh

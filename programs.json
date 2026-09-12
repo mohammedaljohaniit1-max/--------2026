@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-11T22:05:00+00:00",
+  "review_valid_until": "2026-09-18T23:59:00+00:00",
+  "expiry_meaning": "Local snapshot review cutoff, not a program end date or independent authorization.",
+  "notice": "Check current official terms and your eligibility before each run. This snapshot is not a live policy monitor. No targets were probed to create it.",
+  "programs": [
+    {
+      "id": "clario",
+      "name": "Clario",
+      "platform": "HackerOne",
+      "policy_url": "https://hackerone.com/clario",
+      "scope_url": "https://hackerone.com/clario/policy_scopes",
+      "scope_completeness": "All 20 explicitly listed in-scope web hostnames from the 27-row scope table; HTTPS only. Not executable or complete functional coverage.",
+      "published_rate_limit_rps": 1,
+      "automation_quote": "You should always enable throttling on your web-scanners and set it to one request per second.",
+      "scan_origins": [
+        "https://clario.co", "https://mackeeper.com", "https://account.mackeeper.com",
+        "https://api.account.clario.co", "https://mkapi.mackeeper.com", "https://api-ne.mackeeper.com",
+        "https://webapi.clario.co", "https://yapi.clario.co", "https://kbill.mackeeper.com", "https://inapp.clario.co",
+        "https://updatetracker.clario.co", "https://updater.clario.co", "https://static-cdn.clario.co",
+        "https://event.clario.co", "https://dl.clario.co", "https://dcs.clario.co", "https://crm.clario.co",
+        "https://chat.clario.co", "https://chat-crm.clario.co", "https://adblocking.clario.co"
+      ],
+      "explicit_out_of_scope_assets": ["api.account.opendoor.ltd", "api-ne.clario.co", "account.clario.co"],
+      "non_scannable_scope_rows": [
+        {"asset": "Mackeeper app", "type": "Executable", "coverage": "In scope", "note": "Not supported. Policy says 6.6+ whereas the structured row has older 6.1.1+ text; clarify before executable research."},
+        {"asset": "Tier 1", "type": "Other", "coverage": "Out of scope", "note": "Bounty table header, not a target"},
+        {"asset": "Tier 2", "type": "Other", "coverage": "Out of scope", "note": "Bounty table header, not a target"},
+        {"asset": "Tier 3", "type": "Other", "coverage": "Out of scope", "note": "Bounty table header, not a target"}
+      ],
+      "excluded_paths": [],
+      "rules": [
+        "Only listed assets; no inferred subdomains or customer infrastructure.",
+        "No DoS, social engineering, customer contact, destructive testing or access to others' accounts/data.",
+        "Stop and notify Clario immediately on unintended access to customer data.",
+        "No unvalidated scanner reports: clear reproduction, real impact and PoC required.",
+        "No disclosure without permission; first-reporter and other eligibility conditions apply.",
+        "Headers, cookies, TLS/DNS/CSP best practices and banner/version output are not standalone bounty findings."
+      ],
+      "selection_reason": "Explicit finite web scope and clear scanner throttle; not evidence of weak defenses or a promised bounty."
+    },
+    {
+      "id": "cs-money",
+      "name": "CS Money",
+      "platform": "HackerOne",
+      "policy_url": "https://hackerone.com/cs_money",
+      "scope_url": "https://hackerone.com/cs_money/policy_scopes",
+      "scope_completeness": "Conservative subset: cs.money and 3d.cs.money explicitly appear in the program bounty table. Complete structured scope table could not be extracted; NOT full scope.",
+      "published_rate_limit_rps": 5,
+      "published_max_parallel_requests": 5,
+      "automation_quote": "Automated scanning tools must be limited to 5 request per second (300 requests per minute) to one target host summing up all tools and threads running in parallel and must not exceed 5 parallel requests at the same time (5 threads).",
+      "scan_origins": ["https://cs.money", "https://3d.cs.money"],
+      "explicit_out_of_scope_assets": [],
+      "other_named_assets_not_scanned": [
+        {"asset": "blog.cs.money", "reason": "Redirects to cs.money/blog; broad WordPress core/plugin/theme/setup exclusions. Omitted from generic checks."},
+        {"asset": "support.cs.money", "reason": "Named in bounty table but omitted from this conservative subset; no complete structured-scope claim."}
+      ],
+      "excluded_paths": ["/blog"],
+      "rules": [
+        "No DoS, spamming, social engineering, resource exhaustion or physical attacks.",
+        "Only interact with accounts owned by you or explicitly authorized by their holder.",
+        "No balance manipulation on others' accounts, withdrawal of unfairly received skins or theft/disclosure of private data.",
+        "Generic scanner reports are out of scope; manual validation and demonstrated impact are required.",
+        "Follow the program disclosure process; no premature public disclosure.",
+        "Header/cookie/email/TLS hardening and non-sensitive version disclosure are not standalone eligible findings."
+      ],
+      "selection_reason": "Clear automation limit and two explicitly named web assets; financial/trading logic is NOT tested by BURHAN."
+    }
+  ],
+  "excluded_candidates": [
+    {"name": "Discourse", "source": "https://hackerone.com/discourse", "reason": "Policy announces bounty suspension since February 9, 2026; not recommended as a paid-bounty candidate."},
+    {"name": "Mintel", "source": "https://hackerone.com/mintel", "reason": "Policy describes a private program and mandatory attribution header; public visibility does not establish eligibility."},
+    {"name": "Council on Foreign Relations", "source": "https://bugcrowd.com/engagements/cfr", "reason": "Accessible target table was redacted; no scope guessed from company domains."},
+    {"name": "Atmail", "source": "https://www.atmail.com/bug-bounty-terms/", "reason": "Mandatory identity header, third-party infrastructure exclusions and unattended-scanner restrictions require additional support and review."}
+  ]
+}
